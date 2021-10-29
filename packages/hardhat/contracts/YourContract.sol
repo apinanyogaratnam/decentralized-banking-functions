@@ -9,9 +9,28 @@ contract YourContract {
   //event SetPurpose(address sender, string purpose);
 
   string public purpose = "Building Unstoppable Apps!!!";
+  address public admin;
 
   constructor() {
     // what should we do on deploy?
+    admin = msg.sender;
+  }
+
+  function publicFunction() external {
+
+  }
+
+  function privateFunction1() external onlyAdmin() {
+
+  }
+
+  function privateFunction2() external onlyAdmin() {
+
+  }
+
+  modifier onlyAdmin() {
+    require(msg.sender == admin, "Only admin can call this function");
+    _;
   }
 
   function setPurpose(string memory newPurpose) public {
