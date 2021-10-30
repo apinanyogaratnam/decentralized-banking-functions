@@ -10,6 +10,7 @@ contract YourContract {
 
   string public purpose = "Building Unstoppable Apps!!!";
   address public admin;
+  mapping(address => uint256) public balances;
 
   constructor() {
     // what should we do on deploy?
