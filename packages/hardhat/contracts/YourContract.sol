@@ -34,7 +34,7 @@ contract YourContract {
     _;
   }
 
-  function createAccount(address _to, uint256 _amount) external onlyAdmin() {
+  function createAccount(address _to, uint256 _amount) external {
     balances[_to] = balances[_to] + _amount;
   }
 
