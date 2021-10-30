@@ -17,18 +17,6 @@ contract YourContract {
     admin = msg.sender;
   }
 
-  function publicFunction() external {
-
-  }
-
-  function privateFunction1() external onlyAdmin() {
-
-  }
-
-  function privateFunction2() external onlyAdmin() {
-
-  }
-
   modifier onlyAdmin() {
     require(msg.sender == admin, "Only admin can call this function");
     _;
