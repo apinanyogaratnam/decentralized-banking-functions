@@ -36,6 +36,13 @@ contract YourContract {
     balances[_to] += _amount;
   }
 
+  function withdrawFunds(address _from, uint256 _amount) external {
+    require(_from != address(0), "Invalid address");
+    require(_amount > 0, "Invalid amount");
+    require(balances[_from] >= _amount, "Not enough balance");
+    balances[_from] -= _amount;
+  }
+
   function setPurpose(string memory newPurpose) public {
       purpose = newPurpose;
       console.log(msg.sender,"set purpose to",purpose);
