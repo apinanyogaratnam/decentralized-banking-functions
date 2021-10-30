@@ -34,13 +34,8 @@ contract YourContract {
     _;
   }
 
-  function accountExists(address _to) internal view returns (bool) {
-    return balances[_to] > 0;
-  }
-  
-  function createAccount(address _to, uint256 _amount) external {
-    if (accountExists(_to)) return;
-    balances[_to] = _amount;
+  function depositFunds(address _to, uint256 _amount) external {
+    balances[_to] = balances[_to] + _amount;
   }
 
   function setPurpose(string memory newPurpose) public {
