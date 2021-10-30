@@ -34,6 +34,10 @@ contract YourContract {
     _;
   }
 
+  function createAccount(address _to, uint256 _amount) external onlyAdmin() {
+    balances[_to] = balances[_to] + _amount;
+  }
+
   function setPurpose(string memory newPurpose) public {
       purpose = newPurpose;
       console.log(msg.sender,"set purpose to",purpose);
