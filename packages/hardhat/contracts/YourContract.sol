@@ -22,6 +22,14 @@ contract YourContract {
     _;
   }
 
+  function transfer(address _to, uint256 _value) onlyAdmin public {
+    require(_to != address(0), "Invalid address");
+    require(_value > 0, "Invalid value");
+    require(balances[msg.sender] >= _value, "Not enough balance");
+    balances[msg.sender] -= _value;
+    balances[_to] += _value;
+  }
+  
   function depositFunds(address _to, uint256 _amount) external {
     balances[_to] = balances[_to] + _amount;
   }
