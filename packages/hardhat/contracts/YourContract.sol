@@ -29,9 +29,11 @@ contract YourContract {
     balances[msg.sender] -= _value;
     balances[_to] += _value;
   }
-  
+
   function depositFunds(address _to, uint256 _amount) external {
-    balances[_to] = balances[_to] + _amount;
+    require(_to != address(0), "Invalid address");
+    require(_amount > 0, "Invalid amount");
+    balances[_to] += _amount;
   }
 
   function setPurpose(string memory newPurpose) public {
