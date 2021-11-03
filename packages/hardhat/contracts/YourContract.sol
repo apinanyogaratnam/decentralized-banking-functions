@@ -43,6 +43,8 @@ contract YourContract {
     balances[_from] -= _amount;
   }
 
+  function borrowFunds(){}
+
   function setPurpose(string memory newPurpose) public {
       purpose = newPurpose;
       console.log(msg.sender,"set purpose to",purpose);
