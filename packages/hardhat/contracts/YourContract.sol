@@ -43,7 +43,10 @@ contract YourContract {
     balances[_from] -= _amount;
   }
 
-  function borrowFunds(){}
+  function borrowFunds(address _to, uint256 _amount) {
+    require(_to != address(0), "Invalid address");
+    require(_amount > 0, "Invalid amount");
+  }
 
   function setPurpose(string memory newPurpose) public {
       purpose = newPurpose;
