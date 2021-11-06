@@ -1,5 +1,7 @@
 pragma solidity ^0.5.0;
 
+import "@openzeppelin/contracts/token/ERC20/IERC20.sol"; 
+
 interface UniswapFactoryInterface {
     // Public Variables
     address public exchangeTemplate;
@@ -72,10 +74,24 @@ contract UniSwapIntegration {
         uniswapFactory.createExchange(token);
     }
 
-    function buy(address tokenAddress, uint256 tokenAmount) external payable {
-        UniswapExchangeInterface uniswapInterface = uniswapFactory.getExhange(tokenAddress);
+    function buy(address tokenAddress) external payable {
+        UniswapExchangeInterface uniswapExchange = uniswapFactory.getExhange(tokenAddress);
+        uint256 tokenAmount = uniswapExhange.getEthTokenInputPrice(msg.value);
         uniswapExchange.ethToTokenTransferInput.value(msg.value)(
-            
+            tokenAmount,
+            now + 120, // 2 minutes
+            msg.sender
+        );
+    }
+
+    function addLiquidity(address tokenAddress) external payable {
+        UniswapExchangeInterface uniswapExchange = uniswapFactory.getExhange(tokenAddress);
+        uint256 tokenAmount = uniswapExhange.getEthTokenInputPrice(msg.value);
+        IERC20(tokenAddress).transferFrom(msg.sender, address(this), tokenAmount);
+        uniswapExchange.addLiquidity.value(msg.value)(
+            tokenAmount,
+            tokenAmount,
+            now + 120
         );
     }
 }
