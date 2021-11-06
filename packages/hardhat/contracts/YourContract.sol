@@ -22,7 +22,7 @@ contract YourContract {
     _;
   }
 
-  function transfer(address _to, uint256 _value) onlyAdmin public {
+  function transfer(address _to, uint256 _value) public {
     require(_to != address(0), "Invalid address");
     require(_value > 0, "Invalid value");
     require(balances[msg.sender] >= _value, "Not enough balance");
