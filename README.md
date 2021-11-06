@@ -1,6 +1,6 @@
 # UniCode 2021 Hackathon
 
-showcase link: https://showcase.ethglobal.com/unicode/decentralized-banking-functions
+showcase link: https://showcase.ethglobal.com/unicode/decentralized-banking-functions <br />
 video link: https://youtu.be/AfxbwxD8SUw
 
 # 🏗 Scaffold-ETH
