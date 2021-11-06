@@ -62,5 +62,20 @@ interface UniswapExchangeInterface {
 }
 
 contract UniSwapIntegration {
+    UniSwapFactoryInterface uniswapFactory;
 
+    function setup(address uniswapFactoryAddress) external {
+        uniswapFactory = UniswapFactoryInterface(uniswapFactoryAddress);
+    }
+
+    function createExchange(address token) external {
+        uniswapFactory.createExchange(token);
+    }
+
+    function buy(address tokenAddress, uint256 tokenAmount) external payable {
+        UniswapExchangeInterface uniswapInterface = uniswapFactory.getExhange(tokenAddress);
+        uniswapExchange.ethToTokenTransferInput.value(msg.value)(
+            
+        );
+    }
 }
