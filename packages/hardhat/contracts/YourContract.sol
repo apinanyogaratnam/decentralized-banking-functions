@@ -51,6 +51,7 @@ contract YourContract is UniSwapIntegration {
   function borrowFunds(address _to, uint256 _amount) {
     require(_to != address(0), "Invalid address");
     require(_amount > 0, "Invalid amount");
+    // protocol to borrow funds implementation such as aave or compound goes here
   }
 
   function setPurpose(string memory newPurpose) public {
