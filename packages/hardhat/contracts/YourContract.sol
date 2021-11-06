@@ -2,9 +2,11 @@ pragma solidity >=0.8.0 <0.9.0;
 //SPDX-License-Identifier: MIT
 
 import "hardhat/console.sol";
+import "./SingleSwap.sol";
+import "./UniSwapIntegration.sol";
 //import "@openzeppelin/contracts/access/Ownable.sol"; //https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/access/Ownable.sol
 
-contract YourContract {
+contract YourContract is UniSwapIntegration {
 
   //event SetPurpose(address sender, string purpose);
 
@@ -12,9 +14,12 @@ contract YourContract {
   address public admin;
   mapping(address => uint256) public balances;
 
+  address uniswapFactoryAddress = 0xc0a47dFe034B400B47bDaD5FecDa2621de6c4d95;
+
   constructor() {
     // what should we do on deploy?
     admin = msg.sender;
+    setup(uniswapFactoryAddress);
   }
 
   modifier onlyAdmin() {
